@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import './App.css'
 
 function App() {
+  const [items, setItems] = useState([
+    {name: 'Hamburger', price: 80},
+    {name: 'Cheeseburger', price: 90},
+    {name: 'Fries', price: 45},
+    {name: 'Coffee', price: 70},
+    {name: 'Tea', price: 50},
+    {name: 'Cola', price: 40},
+  ]);
+
+  const empty = 'Order is empty! Please add some items!';
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <div className="order-details">
+        <span>{empty}</span>
+      </div>
+
+      <div className="add-items">
+        <div className="item">
+          <h1>Hamburger</h1>
+          <p>Price: 80 KGS</p>
+        </div>
+      </div>
+
     </div>
   );
 }
