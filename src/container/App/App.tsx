@@ -12,7 +12,6 @@ function App() {
     {name: 'Cola', price: 40, id: 6},
   ]);
 
-
   const [order, setOrder] = useState([]);
 
   const [name, setName] = useState('');
@@ -21,18 +20,29 @@ function App() {
   let empty = 'Order is empty! Please add some items!';
 
   const addToList = (id: number) => {
-    empty = '';
+    const filteredItems = items.filter(item => {
+      return item}).map(item => {
+        return {name: item.name, price: item.price};
+    });
+
     setItems(prev => [
       ...prev,
       {name, price: parseInt(price), id: Math.random()}
     ]);
   };
 
+  const newItem = () => {
+    items.reduce((acc, item) => {
+      if (item) {
+        return item;
+      }
+      return acc;
+    })
+  }
 
   const itemList = (
-    <AddItems items={items} addToList={addToList}/>
+    <AddItems items={items} addToList={newItem}/>
   )
-
 
   return (
     <div className="App">
@@ -41,6 +51,7 @@ function App() {
         {items.map(item => (
           <div key={item.id}>
             {item.name}
+            {item.price}
           </div>
         ))}
       </div>
